@@ -10,21 +10,22 @@ class PriorityQueue():
 
     def __init__(self):
         self._size = 0
-        self._container = [[],[],[],[],[]]
+        self._counter= 0
+        self._container = []
         # self._minPriority = 99999
     def add(self, elt, priority=2):
         if priority <0 or priority > 4:
             raise ValueError
         if not isinstance(priority,int):
             raise TypeError
+        self._counter+=1
         self._size +=1
-        self._container[priority].append( elt)
+        self._container.append((priority, self._counter, elt))
     def pop(self):
         if self._size > 0:
+            self._container.sort( key=lambda t: itemgetter(0,1)(t))
             self._size-=1
-            for priorityBlock in self._container:
-                if len(priorityBlock) > 0:
-                    return priorityBlock.pop(0)
+            return self._container.pop(0)[2]
         else:
             raise EmptyQueue("empty queue!")
 
