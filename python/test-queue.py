@@ -1,6 +1,6 @@
 from __future__ import print_function
 import unittest
-import pqueue_sorting as pqueue
+import pqueue
 from pqueue import EmptyQueue
 
 # This test suite consists of 5 tests, which test the semantic

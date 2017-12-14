@@ -23,7 +23,7 @@ class PriorityQueue():
         if self._size > 0:
             self._size-=1
             for priorityBlock in self._container:
-                if len(priorityBlock) > 0:
+                if priorityBlock:
                     return priorityBlock.pop(0)
         else:
             raise EmptyQueue("empty queue!")
