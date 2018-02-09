@@ -59,8 +59,6 @@ template <class T> struct SimpleVector {
 
   __inline__ __host__ __device__ int capacity() const { return maxSize; }
 
-
-
 private:
   int m_size;
   int maxSize;
