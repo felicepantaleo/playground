@@ -40,11 +40,10 @@ template <class T> struct SimpleVector {
     }
   }
 
-  __inline__ __host__ __device__ T &back() const {
+  __inline__ __host__ __device__ T & back() const {
 
     if (m_size > 0) {
-      T &ref = m_data[m_size - 1];
-      return ref;
+      return m_data[m_size - 1];
     } else
       return T(); //undefined behaviour
   }
