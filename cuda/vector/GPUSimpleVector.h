@@ -44,9 +44,6 @@ template <class T> struct SimpleVector {
     }
 
 
-
-}
-
   __inline__ __host__ __device__ T& back() const {
 
     if (m_size > 0) {
