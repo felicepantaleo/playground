@@ -29,7 +29,6 @@ template <class T> struct SimpleVector {
     }
   }
 
-
   template <class... Ts>
   __host__ __device__
   int emplace_back(Ts&&... args) {
@@ -43,7 +42,6 @@ template <class T> struct SimpleVector {
         return -1;
       }
     }
-
 
   __inline__ __host__ __device__ T& back() const {
 
@@ -67,6 +65,20 @@ template <class T> struct SimpleVector {
       return -1;
     }
   }
+
+
+  template <class... Ts>
+  __device__
+  int emplace_back_ts(Ts&&... args) {
+      auto previousSize = atomicAdd(&m_size, 1);
+      if (previousSize < m_capacity) {
+        (new (&m_data[previousSize]) T(std::forward<Ts>(args)...));
+        return previousSize;
+      } else {
+        atomicSub(&m_size, 1);
+        return -1;
+      }
+    }
 #endif
 
   __inline__ __host__ __device__ T operator[](int i) const { return m_data[i]; }
