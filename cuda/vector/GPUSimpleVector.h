@@ -2,13 +2,14 @@
 #ifndef GPU_SIMPLEVECTOR_H_
 #define GPU_SIMPLEVECTOR_H_
 
+#include <type_traits>
+
 namespace GPU {
 template <class T> struct SimpleVector {
   // Constructors
   __host__ __device__ SimpleVector(unsigned int m_capacity, T *m_data = nullptr)
       : m_size(0), m_data(m_data), m_capacity(static_cast<int>(m_capacity)) {
           static_assert(std::is_trivially_destructible<T>::value);
-
       }
 
   __host__ __device__ SimpleVector() : SimpleVector(0) {}
