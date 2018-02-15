@@ -35,7 +35,7 @@ template <class T> struct SimpleVector {
       auto previousSize = m_size;
       m_size++;
       if (previousSize < m_capacity) {
-        push(new (&m_data[previousSize]) T(std::forward<Ts>(args)...));
+        (new (&m_data[previousSize]) T(std::forward<Ts>(args)...));
         return previousSize;
       } else {
         --m_size;
