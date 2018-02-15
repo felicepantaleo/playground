@@ -2,7 +2,9 @@
 #ifndef GPU_SIMPLEVECTOR_H_
 #define GPU_SIMPLEVECTOR_H_
 
+#include <cuda.h>
 #include <type_traits>
+
 
 namespace GPU {
 template <class T> struct SimpleVector {
