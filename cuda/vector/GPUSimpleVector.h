@@ -4,6 +4,7 @@
 
 #include <cuda.h>
 #include <type_traits>
+#include <utility>
 
 
 namespace GPU {
