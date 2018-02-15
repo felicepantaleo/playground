@@ -1,5 +1,5 @@
 //  author: Felice Pantaleo, CERN, 2018
-#include "GPUSimpleVector.hpp"
+#include "GPUSimpleVector.h"
 #include <cassert>
 #include <cuda.h>
 #include <cuda_runtime.h>
