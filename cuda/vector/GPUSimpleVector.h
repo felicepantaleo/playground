@@ -16,7 +16,7 @@ template <class T> struct SimpleVector {
 
   __host__ __device__ SimpleVector() : SimpleVector(0) {}
 
-  __inline__ __host__ __device__ int push_back(const T &element) {
+  __inline__ __host__ __device__ int push_back_unsafe(const T &element) {
     auto previousSize = m_size;
     m_size++;
     if (previousSize < m_capacity) {
@@ -28,7 +28,7 @@ template <class T> struct SimpleVector {
     }
   }
 
-  template <class... Ts> __host__ __device__ int emplace_back(Ts &&... args) {
+  template <class... Ts> __host__ __device__ int emplace_back_unsafe(Ts &&... args) {
     auto previousSize = m_size;
     m_size++;
     if (previousSize < m_capacity) {
@@ -51,7 +51,7 @@ template <class T> struct SimpleVector {
 
 #if defined(__NVCC__) || defined(__CUDACC__)
   // thread-safe version of the vector, when used in a CUDA kernel
-  __device__ int push_back_ts(const T &element) {
+  __device__ int push_back(const T &element) {
     auto previousSize = atomicAdd(&m_size, 1);
     if (previousSize < m_capacity) {
       m_data[previousSize] = element;
@@ -62,7 +62,7 @@ template <class T> struct SimpleVector {
     }
   }
 
-  template <class... Ts> __device__ int emplace_back_ts(Ts &&... args) {
+  template <class... Ts> __device__ int emplace_back(Ts &&... args) {
     auto previousSize = atomicAdd(&m_size, 1);
     if (previousSize < m_capacity) {
       (new (&m_data[previousSize]) T(std::forward<Ts>(args)...));

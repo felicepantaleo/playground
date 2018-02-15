@@ -8,7 +8,7 @@
 
 __global__ void atomic_vector(GPU::SimpleVector<int> *foo) {
   auto index = threadIdx.x + blockIdx.x * blockDim.x;
-  foo->push_back_ts(index);
+  foo->push_back(index);
 }
 
 int main() {
