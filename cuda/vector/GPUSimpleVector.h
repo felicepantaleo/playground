@@ -1,6 +1,6 @@
 //  author: Felice Pantaleo, CERN, 2018
-#ifndef GPU_SIMPLEVECTOR_HPP_
-#define GPU_SIMPLEVECTOR_HPP_
+#ifndef GPU_SIMPLEVECTOR_H_
+#define GPU_SIMPLEVECTOR_H_
 
 namespace GPU {
 template <class T> struct SimpleVector {
