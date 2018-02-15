@@ -23,6 +23,18 @@ template <class T> struct SimpleVector {
     }
   }
 
+
+
+  __inline__ __host__ __device__ T& back() const {
+
+    if (m_size > 0) {
+      T& ref = m_data[m_size - 1];
+      return ref;
+    } else
+      return T();
+  }
+
+
 #if defined(__NVCC__) || defined(__CUDACC__)
   __device__ int push_back_ts(const T &element) {
     auto previousSize = atomicAdd(&m_size, 1);
@@ -34,15 +46,11 @@ template <class T> struct SimpleVector {
       return -1;
     }
   }
+
+
 #endif
 
-  __inline__ __host__ __device__ T pop_back() {
-    if (m_size > 0) {
-      auto previousSize = m_size--;
-      return m_data[previousSize - 1];
-    } else
-      return T();
-  }
+
 
   __inline__ __host__ __device__ T operator[](int i) const { return m_data[i]; }
 
