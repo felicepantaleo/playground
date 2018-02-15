@@ -7,8 +7,8 @@
 namespace GPU {
 template <class T> struct SimpleVector {
   // Constructors
-  __host__ __device__ SimpleVector(unsigned int m_capacity, T *m_data = nullptr)
-      : m_size(0), m_data(m_data), m_capacity(static_cast<int>(m_capacity)) {
+  __host__ __device__ SimpleVector(int capacity, T *data)
+      : m_size(0), m_data(data), m_capacity(capacity) {
           static_assert(std::is_trivially_destructible<T>::value);
       }
 
@@ -50,26 +50,18 @@ template <class T> struct SimpleVector {
       return -1;
     }
   }
-
-
 #endif
 
-
-
   __inline__ __host__ __device__ T operator[](int i) const { return m_data[i]; }
-
-  __inline__ __host__ __device__ T at(int i) const {
-    if (i < m_size)
-      return m_data[i];
-    else
-      return T();
-  }
 
   __inline__ __host__ __device__ void reset() { m_size = 0; }
 
   __inline__ __host__ __device__ int size() const { return m_size; }
 
   __inline__ __host__ __device__ int capacity() const { return m_capacity; }
+
+  __inline__ __host__ __device__ T* data() const { return m_data; }
+
 
 
 
