@@ -32,7 +32,7 @@ template <class T> struct SimpleVector {
 
   template <class... Ts>
   __host__ __device__
-  void emplace_back(Ts&&... args) {
+  int emplace_back(Ts&&... args) {
       auto previousSize = m_size;
       m_size++;
       if (previousSize < m_capacity) {
