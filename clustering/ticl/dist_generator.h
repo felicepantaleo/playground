@@ -16,7 +16,7 @@ std::vector<hgcPoint> generate_cluster(int clusterId, float avgX, float avgY, fl
         auto x = x_distribution(generator);
         auto y = y_distribution(generator);
         auto dist = std::sqrt((x- avgX)*(x- avgX) + (y - avgY) * (y - avgY));
-      tmpPoints.emplace_back(x, y, 1000*peakE*std::exp(-2.f*dist), clusterId) ;
+      tmpPoints.emplace_back(x, y, peakE*std::exp(-2.f*dist), clusterId) ;
     }
     return tmpPoints;
 }
