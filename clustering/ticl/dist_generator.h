@@ -57,7 +57,7 @@ std::vector<hgcPoint> generate_noise( float minX, float maxX, float minY, float 
 
 
 
-      tmpPoints.emplace_back(x_distribution(generator), y_distribution(generator), 1, -1) ;
+      tmpPoints.emplace_back(x_distribution(generator), y_distribution(generator), tmpE, -1) ;
     }
 
     return tmpPoints;
@@ -81,7 +81,7 @@ void generate_noise(std::vector<hgcPoint>& points, float minX, float maxX, float
 
 
 
-      points.emplace_back(x_distribution(generator), y_distribution(generator), 1, -1) ;
+      points.emplace_back(x_distribution(generator), y_distribution(generator), tmpE, -1) ;
     }
 
 }
