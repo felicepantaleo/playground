@@ -2,12 +2,13 @@
 #define __HGCPOINT_H__
 struct hgcPoint
 {
-    hgcPoint(float a, float b, float c):
-    x(a), y(b), E(c)
+    hgcPoint(float ox, float oy, float oE, int oc):
+    x(ox), y(oy), E(oE), clid(oc)
     {
 
     }
     float x,y,E;
+    int clid;
 
 };
 

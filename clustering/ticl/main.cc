@@ -1,4 +1,4 @@
-#include "tbb/tbb.h"
+
 #include <atomic>
 #include <chrono>
 #include <iostream>
@@ -11,7 +11,7 @@
 #include <thread>
 #include <unistd.h>
 
-
+#include "tbb/tbb.h"
 
 #include "dist_generator.h"
 #include "hgcPoint.h"
@@ -28,18 +28,14 @@ int main(int argc, char *argv[]) {
   auto avgY = 2.f;
   auto peakE = 2.f;
 
-  auto sigmaXY = 2.f;
+  auto sigmaXY = 0.5f;
 
-  std::vector<hgcPoint> points_cloud =  generate_cluster(avgX, avgY,  peakE, sigmaXY, nPoints);
+  std::vector<hgcPoint> points_cloud =  generate_cluster(0, avgX, avgY,  peakE, sigmaXY, nPoints);
 
   for (auto& p : points_cloud)
   {
-      std::cout << std::setw(12) << p.x << "\t" <<std::setw(12) << p.y << std::endl;
+      std::cout << std::setw(12) << p.x << "\t" <<std::setw(12) << p.y << "\t" <<std::setw(12) << p.E << std::endl;
   }
-
-
-
-
 
   return 0;
 }
